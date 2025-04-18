@@ -171,29 +171,57 @@
 
   <table class="summary-list">
     <tr><th>Stage</th><th>What we did</th><th>Why it matters</th></tr>
-    <tr><td>1  CCD‑rate screening</td>
-        <td>Computed <code>CCD colonies ÷ registered colonies</code> (2019‑23) for every state.</td>
-        <td>Focuses on proportional risk, not sheer colony counts.</td></tr>
-    <tr><td>2  Quarter→year aggregation</td>
-        <td>Summed USDA quarterly data to annual; synced with annual storm counts.</td>
-        <td>Avoids seasonal phase‑mismatch in correlations.</td></tr>
-    <tr><td>3  Feature engineering</td>
-        <td>Lag‑1 Varroa %, counts for Heat, Heavy Rain, Drought, Wildfire, etc.;
-            composite “Warm Events = Heat + Drought”.</td>
-        <td>Captures biological lag (mites) & extreme‑weather pressure.</td></tr>
-    <tr><td>4  Visual triage</td>
-        <td>Dual‑axis bar/line panels per state/year.</td>
-        <td>Quickly spots hot‑spot patterns before stats.</td></tr>
-    <tr><td>5  Correlation matrix</td>
-        <td>Pearson r across 5 states × 5 years (25 cells).</td>
-        <td>Identifies variables to carry into regression/forecast.</td></tr>
-    <tr><td>6  State OLS models</td>
-        <td><code>CCD ~ Lag Varroa + Heat + Heavy_Rain + Year</code></td>
-        <td>Transparent, interpretable coefficients.</td></tr>
-    <tr><td>7  Forward simulation</td>
-        <td>Projected Heat & Heavy Rain trends 2026‑31, fed into CCD equation.</td>
-        <td>Creates extension‑agent horizon lines.</td></tr>
-    </table>
+
+    <tr>
+      <td>1&nbsp;&nbsp;CCD‑rate screening</td>
+      <td>Computed <code>CCD colonies ÷ registered colonies</code> (2019‑23) for every state.</td>
+      <td>Focuses on proportional risk, not sheer colony counts.</td>
+    </tr>
+
+    <tr>
+      <td>2&nbsp;&nbsp;Quarter→year aggregation</td>
+      <td>Summed USDA quarterly data to annual; synced with NOAA’s annual storm events.</td>
+      <td>Avoids seasonal phase‑mismatch in correlations.</td>
+    </tr>
+
+    <tr>
+      <td>3&nbsp;&nbsp;Feature engineering</td>
+      <td>
+        Created lag‑1 Varroa %, plus annual counts of:<br>
+        &nbsp;&nbsp;• Heavy Rain<br>
+        &nbsp;&nbsp;• Drought days<br>
+        &nbsp;&nbsp;• Heat days<br>
+        &nbsp;&nbsp;• Wildfire days<br>
+        &nbsp;&nbsp;• Winter Weather events<br>
+        &nbsp;&nbsp;• Thunderstorm & Wind events
+      </td>
+      <td>Captures biological lag (mites) and each extreme‑weather dimension separately.</td>
+    </tr>
+
+    <tr>
+      <td>4&nbsp;&nbsp;Visual triage</td>
+      <td>Dual‑axis bar/line panels by state and year.</td>
+      <td>Quickly spots weather–mite “fingerprints” before formal stats.</td>
+    </tr>
+
+    <tr>
+      <td>5&nbsp;&nbsp;Correlation matrix</td>
+      <td>Computed Pearson’s r across 5 states × 5 years (25 records).</td>
+      <td>Identifies which weather variables to carry into regression.</td>
+    </tr>
+
+    <tr>
+      <td>6&nbsp;&nbsp;State OLS models</td>
+      <td><code>CCD ~ Lagged_Varroa + Heavy_Rain + Drought + Heat + Wildfire + Winter_Weather + Thunderstorm_Wind + Year</code></td>
+      <td>Produces transparent, interpretable coefficients for each driver.</td>
+    </tr>
+
+    <tr>
+      <td>7&nbsp;&nbsp;Forward simulation</td>
+      <td>Extended each weather trend (2026‑31) and fed them, along with 2023 Varroa, into the regression equations.</td>
+      <td>Generates “horizon” projections to guide extension planning.</td>
+    </tr>
+  </table>
 </section>
 
 <!-- RESULTS –– UPDATED -->
