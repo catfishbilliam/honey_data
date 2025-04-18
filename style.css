@@ -237,6 +237,25 @@ footer {
   .page-grid img { flex: 1 1 calc(50% - var(--gap)); }
 }
 
+/* --------------------------------------------------
+   RESPONSIVE IFRAME (Power BI, YouTube, etc.)
+-------------------------------------------------- */
+.responsive-embed {
+  position: relative;   /* establishes the containing block  */
+  width: 100%;          /* always as wide as its parent      */
+  padding-top: 75%;     /* =  4 : 3   (100 / (1024/768))     */
+  /*  ► Change to 56.25% for a 16:9 report (100 / (16/9))    */
+  overflow: hidden;     /* hides scrollbars on very small screens */
+}
+
+.responsive-embed iframe {
+  position: absolute;
+  inset: 0;             /* = top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* 8‑B  Small phones ≤ 480 px */
 @media (max-width: 480px) {
 
@@ -260,4 +279,23 @@ footer {
   /* table cell padding smaller */
   .summary-list th,
   .summary-list td { padding: .55rem .6rem; }
+}
+
+/* --------------------------------------------------
+   RESPONSIVE IFRAME (Power BI, YouTube, etc.)
+-------------------------------------------------- */
+.responsive-embed {
+  position: relative;   /* establishes the containing block  */
+  width: 100%;          /* always as wide as its parent      */
+  padding-top: 75%;     /* =  4 : 3   (100 / (1024/768))     */
+  /*  ► Change to 56.25% for a 16:9 report (100 / (16/9))    */
+  overflow: hidden;     /* hides scrollbars on very small screens */
+}
+
+.responsive-embed iframe {
+  position: absolute;
+  inset: 0;             /* = top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
