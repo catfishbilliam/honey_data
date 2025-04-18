@@ -37,20 +37,33 @@
   <p>
     Using Power BI alone, we joined USDA colony datasets (quarterly), NOAA storm events (annual),
     and state Varroa percentages to identify the strongest weather‑driven threats to
-    honeybee colonies across the five worst CCD‑rate states
+    honeybee colonies across the states with the strongest rates of Colony Collapse Disorder (CCD), specifically in
     <strong>California, Florida, Georgia, Idaho and Washington</strong>.
-    Our correlation heat‑map, simple state‑level regressions, and forward simulation to 2031
+    The correlation heat‑map, simple state‑level regressions, and forward simulation to 2031
     converge on three core findings:
   </p>
 
   <ol class="summary-list">
-    <li><strong>Heavy Rain (+0.54)</strong> and <strong>Lag Varroa % (+0.46)</strong> are the two
-        most consistent positive drivers of CCD across 25 state‑year observations.</li>
-    <li><strong>Heat events correlate negatively (–0.60)</strong> with CCD,
-        echoing lab work showing thermal suppression of mites s41598-021-01369-1.pdf](file-service://file-E4c1esziuiPicUBeTvmW3D).</li>
-    <li>Forecasts suggest steep CCD gains in <em>Florida</em> (+10 k) and
-        <em>Washington</em> (+25 k colonies) by 2031 if current rain / mite
-        trajectories persist.</li>
+    <li>
+      <strong>Heavy Rain (r ≈ +0.54)</strong> and <strong>Lagged Varroa % (r ≈ +0.46)</strong>
+      show the strongest positive associations with CCD in our 25 state‑year sample.
+      These correlations suggest—but do not prove—that wetter seasons and residual mite
+      loads could coincide with higher losses.
+    </li>
+  
+    <li>
+      <strong>Heat events are moderately negatively correlated (r ≈ –0.60) with CCD.</strong>
+      This inverse pattern may reflect the thermal stress that limits Varroa
+      growth observed in laboratory work (Smoliński et al., 2021), but more evidence is
+      needed to confirm causality.
+    </li>
+  
+    <li>
+     <strong>Simple trend‑based projections</strong> potentially indicate that CCD losses could rise by
+      roughly 10 k colonies in Florida and 25 k in Washington by 2031 if
+      recent rainfall and mite trajectories continue. These forecasts should be treated
+      as indicative envelopes rather than precise predictions.
+    </li>
   </ol>
 </section>
 
@@ -148,13 +161,13 @@
   <p>
     In short, <strong>our visuals back the literature</strong>: the positive CCD ↔ rain/Varroa links
     and the protective heat effect replicate controlled‑study findings, but now at a multi‑state
-    scale using publicly available data and <em>only</em> Power BI’s R visuals.
+    scale using publicly available data and only> Power BI’s R visuals.
   </p>
 </section>
 
 <!-- METHODS -->
 <section id="methods" class="section">
-  <h2>How We Built the Analysis</h2>
+  <h2>Framework of the Analysis</h2>
 
   <table class="summary-list">
     <tr><th>Stage</th><th>What we did</th><th>Why it matters</th></tr>
@@ -189,56 +202,56 @@
 
   <!-- correlation -->
   <div class="chart-placeholder">
-    <h3>1. Correlation matrix, 2019‑23 (25 state‑year rows)</h3>
+    <h3>1. Correlation matrix, 2019‑23 (25 state‑year cells)</h3>
     <img src="report/Correlations_allweather.png" alt="Correlation heat‑map">
   </div>
 
   <ul class="summary-list">
     <li><strong>Heavy Rain (r ≈ +0.54) and Varroa (r ≈ +0.46)</strong> tend to appear in the
-        same positive quadrant.  This pattern <em>could</em> reflect the way prolonged rain
-        restricts flights (Karbassioon et al., 2023) and <em>may</em> create humid hive
+        same positive quadrant.  This pattern could reflect the way prolonged rain
+        restricts flights (Karbassioon et al., 2023) and may create humid hive
         conditions that favour mite growth and virus survival (Ali et al., 2023).</li>
 
     <li><strong>Heat (r ≈ –0.60)</strong> occupies the mirror cell: warmer seasons in our
-        five‑state sample are <em>often associated</em> with lower CCD losses.  Laboratory work
+        five‑state sample are often associated with lower CCD losses.  Laboratory work
         by Smoliński et al. (2021) suggests that high temperatures can suppress Varroa;
-        our negative coefficient <em>may point</em> to a similar field‑scale effect.</li>
+        our negative coefficient may point to a similar field‑scale effect.</li>
 
     <li>The very high link between <strong>Warm‑Events Total and Excessive‑Heat
         (r ≈ 0.97)</strong> indicates that our composite “warm events” metric is essentially an
-        extreme‑heat counter.  Because multicollinearity <em>could</em> inflate regression
+        extreme‑heat counter.  Because multicollinearity could inflate regression
         errors, we excluded that composite from the final models.</li>
 
     <li>Varroa share shows a modest positive tie to rainfall (+0.29) and a negative one
-        to absolute heat (–0.56).  Together these signals <em>suggest</em> mites may rebound
+        to absolute heat (–0.56).  Together these signals suggest mites may rebound
         after wet, mild periods unless sustained heat intervenes.</li>
   </ul>
 
   <!-- per‑state rain vs varroa storyboard -->
   <h3>2. Weather ↔ Varroa storyboards (report pages 02‑07)</h3>
   <p>
-    The dual‑axis panels reveal state‑specific patterns that <em>might</em> explain recent CCD
+    The dual‑axis panels reveal state‑specific patterns that might explain recent CCD
     swings.  Key observations include:
   </p>
 
   <ul class="summary-list">
     <li><strong>California (Page 02).</strong> A two‑year rain decline (2020‑21) <i>coincided</i>
         with lower Varroa levels and a dip in CCD.  When rain returned in 2022, both
-        mites and losses <em>appeared</em> to rise.</li>
+        mites and losses appeared to rise.</li>
 
     <li><strong>Florida (Page 03).</strong> High baseline humidity plus record rain in 2021
-        <em>may have helped</em> sustain Varroa despite frequent heat spikes, keeping CCD
+        may have helped sustain Varroa despite frequent heat spikes, keeping CCD
         near 45‑50 k colonies.</li>
 
     <li><strong>Georgia (Page 04).</strong> Storm rainfall increased, yet a run of
-        severe‑heat days (~30 yr‑¹) <em>might</em> have limited mite pressure; CCD drifted
+        severe‑heat days (~30 yr‑¹) might have limited mite pressure; CCD drifted
         downward during the same span.</li>
 
-    <li><strong>Idaho (Page 05).</strong> Prolonged drought <em>appears to have</em> muted both
+    <li><strong>Idaho (Page 05).</strong> Prolonged drought appears to have muted both
         rain events and Varroa, holding CCD below 25 k until rain normalised in 2023.</li>
 
     <li><strong>Washington (Page 06).</strong> Cool, wet winters and heavy spring rain
-        <em>seem</em> to provide favourable mite conditions; CCD losses roughly doubled
+        seem to provide favourable mite conditions; CCD losses roughly doubled
         between 2021 and 2023 while heat days remained scarce.</li>
   </ul>
 
@@ -255,21 +268,21 @@
 
     <tr>
       <td><strong>Florida</strong></td><td>46 k</td><td><strong>≈ 56 k ▲</strong></td>
-      <td>Modelled tropical‑rain increases (~7 % yr‑¹) <em>could</em> keep Varroa in the
+      <td>Modelled tropical‑rain increases (~7 % yr‑¹) could keep Varroa in the
           upper quartile.  If heat stays near current maxima, progress may depend on
           drainage improvements and aggressive mite control.</td>
     </tr>
 
     <tr>
       <td><strong>Washington</strong></td><td>27 k</td><td><strong>≈ 52 k ▲</strong></td>
-      <td>Projected wetter winters and mild summers <em>may foster</em> “Varroa
+      <td>Projected wetter winters and mild summers may foster “Varroa
           greenhouse” conditions.  Without additional heat stress, CCD losses
-          <em>could</em> almost double.</td>
+          could almost double.</td>
     </tr>
 
     <tr>
       <td>Arizona</td><td>6 k</td><td><strong>≈ 4 k ▼</strong></td>
-      <td>Sustained aridity (>120 heat‑days yr‑¹) <em>appears likely</em> to keep
+      <td>Sustained aridity (>120 heat‑days yr‑¹) appears likely to keep
           Varroa cycles short.  Even strong monsoon years look too brief to reverse
           the overall down‑trend in CCD.</td>
     </tr>
@@ -277,7 +290,7 @@
     <tr>
       <td>Georgia</td><td>24 k</td><td><strong>≈ 19 k ▼</strong></td>
       <td>A gradual rise in heat days (≈ +3 yr‑¹) may outpace rainfall growth,
-          <em>potentially</em> nudging Varroa prevalence below 30 % and easing CCD.</td>
+          potentially nudging Varroa prevalence below 30 % and easing CCD.</td>
     </tr>
 
     <tr>
@@ -312,28 +325,24 @@
   </p>
 </section>
 
-<!-- FULL REPORT IMAGES -->
+<!-- FULL REPORT IMAGES / EMBED -->
 <section id="report" class="section">
   <h2>Appendix — Full Power BI Pages</h2>
 
-  <!-- grid 01–05 -->
-  <div class="page-grid">
-    <img src="report/Page_1.png"  alt="Page 1">
-    <img src="report/Page_2.png"  alt="Page 2">
-    <img src="report/Page_3.png"  alt="Page 3">
-    <img src="report/Page_4.png"  alt="Page 4">
-    <img src="report/Page_5.png"  alt="Page 5">
-  </div>
-
-  <!-- grid 06–10 -->
-  <div class="page-grid">
-    <img src="report/Page_6.png"  alt="Page 6">
-    <img src="report/Page_7.png"  alt="Page 7">
-    <img src="report/Page_8.png"  alt="Page 8">
-    <img src="report/Page_9.png"  alt="Page 9">
-    <img src="report/Page_10.png" alt="Page 10">
+  <!-- wrapper keeps the layout tidy -->
+  <div class="chart-placeholder">
+    <iframe title="honey_data"
+            width="1024"
+            height="804"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZjc3NmE5MzMtNDgzNC00MjI5LWI4YWYtNDM3NjhlNmFiYzhlIiwidCI6ImVlMmQ2ZDcyLTk1MzUtNDI0Mi1hMDc3LWFjZjE4NTc4MmY5YiIsImMiOjF9"
+            frameborder="0"
+            allowfullscreen="true"
+            style="display:block; margin:2rem auto;">
+    </iframe>
   </div>
 </section>
+
+  
 
 </main>
 
